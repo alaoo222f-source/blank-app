@@ -45,20 +45,16 @@ Models: you can try openrouter/auto, anthropic/claude-3.5-sonnet, openai/gpt-4o-
 
 The app keeps a compact summary of uploaded files to stay within context limits. You can also paste specific file contents into chat using the built-in viewer. """
 
-
-from future import annotations import os import io import re import json import time import zipfile import base64 from pathlib import Path from typing import List, Dict, Tuple
-
-import streamlit as st import requests
-
-Optional deps
-
-try: from PyPDF2 import PdfReader  # type: ignore except Exception: PdfReader = None  # type: ignore
-
-try: import docx  # python-docx except Exception: docx = None
-
-try: from PIL import Image except Exception: Image = None
-
-try: import pytesseract  # requires tesseract binary installed on system except Exception: pytesseract = None
+from __future__ import annotations
+import os
+import io
+import re
+import json
+import time
+import zipfile
+import base64
+from pathlib import Path
+from typing import List, Dict, Tuple
 
 SUPPORTED_TEXT_EXTS = { ".py", ".js", ".ts", ".tsx", ".jsx", ".java", ".kt", ".go", ".rs", ".cpp", ".c", ".cs", ".html", ".css", ".json", ".yaml", ".yml", ".toml", ".md", ".txt", ".csv", ".env", } SUPPORTED_IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tiff"}
 
